@@ -15,8 +15,12 @@ namespace LoadXamlSample
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
+			var labelXaml = $"<Label Text=\"I was loaded from a string {++loadCounter} times!\" VerticalOptions=\"Center\" HorizontalOptions=\"Center\" />";
+			var label = new Label();
+			label.LoadFromXaml(labelXaml);
+
             var page = new ContentPage();
-            page.LoadFromXaml($"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<ContentPage xmlns=\"http://xamarin.com/schemas/2014/forms\"\r\nxmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\nx:Class=\"Examples.Views.TestView\">\r\n<Label Text=\"I was loaded from a string {++loadCounter} times!\" VerticalOptions=\"Center\" HorizontalOptions=\"Center\" />\r\n</ContentPage>");
+			page.LoadFromXaml($"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n<ContentPage xmlns=\"http://xamarin.com/schemas/2014/forms\"\r\nxmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\"\r\nx:Class=\"Examples.Views.TestView\">\r\n{labelXaml}\r\n</ContentPage>");
        
             Navigation.PushAsync(page);
         }
